@@ -14,7 +14,7 @@
       <iframe
         id="webB"
         width="100%"
-        height="1137px"
+        height="1500px"
         class=""
         src="http://localhost:3000/"
         title="Create Member"
@@ -106,7 +106,6 @@ function onInvalidSubmit({
 .gray-background {
   background: $gray-background;
 }
-
 .form-access {
   width: 50%;
   margin: 0 auto;
@@ -116,12 +115,7 @@ function onInvalidSubmit({
   width: 13%;
   height: 742px;
 }
-
 .main {
   width: 87%;
-}
-
-.field {
-  width: 30px;
 }
 </style>
