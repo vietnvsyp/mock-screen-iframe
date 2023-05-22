@@ -1,0 +1,21 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch remote website with sourcemaps",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceRoot}/",
+      "sourceMaps": true,
+      "breakOnLoad": true,
+      "sourceMapPathOverrides": {
+        "webpack:///*.vue": "${webRoot}/*.vue",
+        "webpack://./*.vue": "${webRoot}/*.vue",
+        "webpack:///*": "${webRoot}/*",
+        "webpack://./*": "${webRoot}/*"
+      },
+      "vueComponentPaths": ["${webRoot}/**/*.vue"]
+    }
+  ]
+}
