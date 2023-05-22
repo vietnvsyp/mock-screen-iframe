@@ -6,8 +6,8 @@
     <div class="main">
       <div class="header gray-background">
         <form @submit="onSubmit" class="form-access">
-          <TextField label="Token" name="token"></TextField>
-          <TextField label="Url" name="url"></TextField>
+          <TextField label="Access token" name="access_token"></TextField>
+          <TextField label="Refresh token" name="refresh_token"></TextField>
           <v-btn type="submit" block class="mt-2">Submit</v-btn>
         </form>
       </div>
@@ -16,8 +16,9 @@
         width="100%"
         height="1137px"
         class=""
-        src="http://localhost:3000/top"
+        src="http://localhost:3000/"
         title="Create Member"
+        scrolling="no"
       >
       </iframe>
     </div>
@@ -29,46 +30,61 @@ import { useForm } from 'vee-validate'
 import { ref } from 'vue'
 import { object, string } from 'yup'
 
-const token = ref('')
-const url = ref('')
+const accessToken = ref('')
+const refreshToken = ref('')
 
-if (process.client) {
-  const parentWindow = window.parent
-  const iframe = document.getElementById('webB') as HTMLIFrameElement
-
-  // Function to send a message to the iframe
-  const sendMessageToIframe = () => {
-    if (iframe && iframe.contentWindow) {
-      iframe.contentWindow.postMessage('123123145', '*')
-      console.log('Send message successfully')
-    } else {
-      console.error(
-        'Unable to send message to iframe: iframe or iframe.contentWindow is null.'
-      )
+onMounted(() => {
+  window.addEventListener('message', (event) => {
+    const iframe = document.getElementById('webB') as HTMLIFrameElement
+    if (event.data == 'token-request') {
+      if (
+        iframe &&
+        iframe.contentWindow &&
+        accessToken.value.length > 0 &&
+        refreshToken.value.length > 0
+      ) {
+        iframe.contentWindow.postMessage(
+          {
+            access_token: accessToken.value,
+            refresh_token: refreshToken.value,
+          },
+          '*'
+        )
+        console.log('Send message successfully')
+      } else {
+        console.error(
+          'Unable to send message to iframe: iframe or iframe.contentWindow is null.'
+        )
+      }
     }
-  }
-
-  // sendMessageToIframe()
-  window.addEventListener('load', sendMessageToIframe)
-}
+  })
+})
 
 const schema = object().shape({
-  token: string().required(),
-  url: string().required(),
+  access_token: string().required(),
+  refresh_token: string().required(),
 })
 
 const { handleSubmit } = useForm({
   validationSchema: schema,
-  initialValues: {
-    token: token.value,
-    url: url.value,
-  },
 })
 
-const onSubmit = handleSubmit(async (values) => {
+const onSubmit = handleSubmit((values) => {
   const iframe = document.getElementById('webB') as HTMLIFrameElement
-
-  iframe.src = values.url
+  if (iframe && iframe.contentWindow) {
+    iframe.contentWindow.postMessage(
+      {
+        access_token: values.access_token,
+        refresh_token: values.refresh_token,
+      },
+      '*'
+    )
+    console.log('Send message successfully')
+  } else {
+    console.error(
+      'Unable to send message to iframe: iframe or iframe.contentWindow is null.'
+    )
+  }
 }, onInvalidSubmit)
 
 function onInvalidSubmit({
