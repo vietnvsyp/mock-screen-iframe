@@ -7,7 +7,6 @@
       <div class="header gray-background">
         <form @submit="onSubmit" class="form-access">
           <TextField label="Access token" name="access_token"></TextField>
-          <TextField label="Refresh token" name="refresh_token"></TextField>
           <v-btn type="submit" block class="mt-2">Submit</v-btn>
         </form>
       </div>
@@ -16,7 +15,7 @@
         width="100%"
         height="1500px"
         class=""
-        src="http://localhost:3000/"
+        src="https://syp-dev.d1ki13c332hn49.amplifyapp.com/"
         title="Create Member"
         scrolling="no"
       >
@@ -62,7 +61,6 @@ onMounted(() => {
 
 const schema = object().shape({
   access_token: string().required(),
-  refresh_token: string().required(),
 })
 
 const { handleSubmit } = useForm({
@@ -75,7 +73,6 @@ const onSubmit = handleSubmit((values) => {
     iframe.contentWindow.postMessage(
       {
         access_token: values.access_token,
-        refresh_token: values.refresh_token,
       },
       '*'
     )
