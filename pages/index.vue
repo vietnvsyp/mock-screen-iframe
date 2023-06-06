@@ -36,16 +36,10 @@ onMounted(() => {
   window.addEventListener('message', (event) => {
     const iframe = document.getElementById('webB') as HTMLIFrameElement
     if (event.data == 'token-request') {
-      if (
-        iframe &&
-        iframe.contentWindow &&
-        accessToken.value.length > 0 &&
-        refreshToken.value.length > 0
-      ) {
+      if (iframe && iframe.contentWindow && accessToken.value.length > 0) {
         iframe.contentWindow.postMessage(
           {
             access_token: accessToken.value,
-            refresh_token: refreshToken.value,
           },
           '*'
         )
