@@ -6,14 +6,18 @@
     <div class="main">
       <div class="header gray-background">
         <form @submit="onSubmit" class="form-access">
-          <TextField label="Access token" name="access_token"></TextField>
+          <TextField
+            label="Access token"
+            name="access_token"
+            v-model="accessToken"
+          ></TextField>
           <v-btn type="submit" block class="mt-2">Submit</v-btn>
         </form>
       </div>
       <iframe
         id="webB"
         width="100%"
-        height="1500px"
+        height="2000px"
         class=""
         src="https://syp-dev.d1ki13c332hn49.amplifyapp.com/"
         title="Create Member"
