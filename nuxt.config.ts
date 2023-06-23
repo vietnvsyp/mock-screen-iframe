@@ -52,6 +52,6 @@ export default defineNuxtConfig({
     },
   },
   app: {
-    baseURL: '/top',
+    baseURL: '/',
   },
 })
