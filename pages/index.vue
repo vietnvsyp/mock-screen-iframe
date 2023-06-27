@@ -3,7 +3,7 @@
     <div class="d-flex justify-center align-center sidebar gray-background">
       <span>コンテンツ</span>
     </div>
-    <div class="header gray-background">
+    <div class="topHeader gray-background">
       <form @submit="onSubmit" class="form-access">
         <TextField
           label="Access token"
@@ -22,18 +22,30 @@
       min-height: 100%;
       font-family: 'Yu Gothic';
     "
-    class="gray-background"
+    class="gray-background mainRight"
   >
-    <div class="header">
+    <div class="topHeader">
       <form @submit="onSubmit" class="form-access">
-        <img src="/top-menu.png" style="height: 150px" />
+        <img
+          src="/top-menu.png"
+          style="height: 150px; width: 100%; object-fit: contain"
+        />
       </form>
     </div>
     <div class="main gray-background">
-      <iframe
+      <!--<iframe
         id="webB"
         class="responsive-iframe"
         src="https://syp-dev.dydulkk5p8dko.amplifyapp.com/"
+        title="Create Member"
+        scrolling="no"
+        onload="this.style.height=(this.contentWindow.document.body.scrollHeight+20)+'px';"
+      >
+      </iframe>-->
+      <iframe
+        id="webB"
+        class="responsive-iframe"
+        src="http://localhost:3002"
         title="Create Member"
         scrolling="no"
         onload="this.style.height=(this.contentWindow.document.body.scrollHeight+20)+'px';"
@@ -122,27 +134,23 @@ function resizeIframe(obj: any) {
   //background: $gray-background;
   background: white;
 }
-.header {
+.topHeader {
   width: 100%;
   background: white;
-  margin-left: auto;
-  margin-right: auto;
 }
 .form-access {
-  width: 40%;
   margin: 0 auto;
   padding-bottom: 16px;
   height: 150px;
 }
 .main {
-  margin-left: 180px;
   flex: 1;
-  width: 80%;
+  width: 100%;
 }
 .responsive-iframe {
   top: 0;
-  left: 10%;
   bottom: 0;
+  left: 10%;
   right: 10%;
   width: 100%;
   height: 4500px;
@@ -156,5 +164,17 @@ function resizeIframe(obj: any) {
   z-index: 1;
   top: 0;
   left: 0;
+}
+.mainRight {
+  margin-left: 180px;
+}
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .sidenav {
+    display: none;
+  }
+  .mainRight {
+    margin-left: 0;
+  }
 }
 </style>
