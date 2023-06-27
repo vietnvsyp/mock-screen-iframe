@@ -33,7 +33,7 @@
       </form>
     </div>
     <div class="main gray-background">
-      <!--<iframe
+      <iframe
         id="webB"
         class="responsive-iframe"
         src="https://syp-dev.dydulkk5p8dko.amplifyapp.com/"
@@ -41,8 +41,8 @@
         scrolling="no"
         onload="this.style.height=(this.contentWindow.document.body.scrollHeight+20)+'px';"
       >
-      </iframe>-->
-      <iframe
+      </iframe>
+      <!--<iframe
         id="webB"
         class="responsive-iframe"
         src="http://localhost:3002"
@@ -50,7 +50,7 @@
         scrolling="no"
         onload="this.style.height=(this.contentWindow.document.body.scrollHeight+20)+'px';"
       >
-      </iframe>
+      </iframe>-->
     </div>
   </div>
   <!-- </div> -->
