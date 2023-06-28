@@ -145,7 +145,6 @@ function resizeIframe(obj: any) {
 }
 .main {
   flex: 1;
-  width: 100%;
 }
 .responsive-iframe {
   top: 0;
