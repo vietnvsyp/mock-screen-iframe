@@ -36,7 +36,7 @@
       <iframe
         id="webB"
         class="responsive-iframe"
-        src="https://syp-dev.dydulkk5p8dko.amplifyapp.com/"
+        :src="runtimeConfig.public.iframeTargetUrl"
         title="Create Member"
         scrolling="no"
         onload="this.style.height=(this.contentWindow.document.body.scrollHeight+20)+'px';"
@@ -63,6 +63,7 @@ import { object, string } from 'yup'
 
 const accessToken = ref('aaaaaa')
 const refreshToken = ref('')
+const runtimeConfig = useRuntimeConfig()
 
 onMounted(() => {
   window.addEventListener('message', (event) => {

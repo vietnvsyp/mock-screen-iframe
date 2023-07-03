@@ -48,7 +48,7 @@ export default defineNuxtConfig({
   ],
   runtimeConfig: {
     public: {
-      apiUrl: process.env.API_URL,
+      iframeTargetUrl: process.env.IFRAME_URL,
     },
   },
   app: {
