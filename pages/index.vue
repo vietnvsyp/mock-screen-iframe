@@ -1,18 +1,14 @@
 <template>
-  <!-- <div class="d-flex iframe-item">
-    <div class="d-flex justify-center align-center sidebar gray-background">
-      <span>コンテンツ</span>
-    </div>
-    <div class="topHeader gray-background">
-      <form @submit="onSubmit" class="form-access">
-        <TextField
-          label="Access token"
-          name="access_token"
-          v-model="accessToken"
-        ></TextField>
-        <v-btn type="submit" block class="mt-2">Submit</v-btn>
-      </form>
-    </div> -->
+  <div class="topHeader gray-background">
+    <form @submit="onSubmit" class="form-access">
+      <TextField
+        label="Access token"
+        name="access_token"
+        v-model="accessToken"
+      ></TextField>
+      <v-btn type="submit" block class="mt-2">Submit</v-btn>
+    </form>
+  </div>
   <div class="sidenav"><img src="/left-menu.png" /></div>
   <div
     style="
@@ -36,21 +32,13 @@
       <iframe
         id="webB"
         class="responsive-iframe"
-        :src="runtimeConfig.public.iframeTargetUrl"
+        :src="srcIframe"
         title="Create Member"
         scrolling="no"
-        onload="this.style.height=(this.contentWindow.document.body.scrollHeight+20)+'px';"
+        :height="heightApp"
+        width="100%"
       >
       </iframe>
-      <!--<iframe
-        id="webB"
-        class="responsive-iframe"
-        src="http://localhost:3002"
-        title="Create Member"
-        scrolling="no"
-        onload="this.style.height=(this.contentWindow.document.body.scrollHeight+20)+'px';"
-      >
-      </iframe>-->
     </div>
   </div>
   <!-- </div> -->
@@ -61,13 +49,21 @@ import { useForm } from 'vee-validate'
 import { ref } from 'vue'
 import { object, string } from 'yup'
 
-const accessToken = ref('aaaaaa')
+const accessToken = ref('')
 const refreshToken = ref('')
 const runtimeConfig = useRuntimeConfig()
+const srcIframe = ref(runtimeConfig.public.iframeTargetUrl)
 
+const route = useRoute()
+const answerId = route.query.answerId?.toString()
+const heightApp = ref()
 onMounted(() => {
+  const iframe = document.getElementById('webB') as HTMLIFrameElement
+
+  if (answerId) {
+    srcIframe.value = srcIframe.value + '?answerId=' + answerId
+  }
   window.addEventListener('message', (event) => {
-    const iframe = document.getElementById('webB') as HTMLIFrameElement
     if (event.data == 'token-request') {
       if (iframe && iframe.contentWindow && accessToken.value.length > 0) {
         iframe.contentWindow.postMessage(
@@ -82,6 +78,8 @@ onMounted(() => {
           'Unable to send message to iframe: iframe or iframe.contentWindow is null.'
         )
       }
+    } else if (event.data.type === 'iframe-height') {
+      heightApp.value = event.data.height
     }
   })
 })
@@ -146,16 +144,6 @@ function resizeIframe(obj: any) {
 }
 .main {
   flex: 1;
-}
-.responsive-iframe {
-  top: 0;
-  bottom: 0;
-  left: 10%;
-  right: 10%;
-  width: 100%;
-  height: 4500px;
-  //border: solid 1px black;
-  border: none;
 }
 .sidenav {
   height: 100%;
