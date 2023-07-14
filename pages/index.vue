@@ -37,6 +37,7 @@
         scrolling="no"
         :height="heightApp"
         width="100%"
+        style="border: none"
       >
       </iframe>
     </div>
