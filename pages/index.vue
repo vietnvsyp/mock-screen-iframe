@@ -65,7 +65,7 @@ onMounted(() => {
     srcIframe.value = srcIframe.value + '?answerId=' + answerId
   }
   window.addEventListener('message', (event) => {
-    if (event.data == 'token-request') {
+    if (event.data == 'first_token') {
       if (iframe && iframe.contentWindow && accessToken.value.length > 0) {
         iframe.contentWindow.postMessage(
           {
