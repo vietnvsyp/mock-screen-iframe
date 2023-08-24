@@ -51,7 +51,4 @@ export default defineNuxtConfig({
       iframeTargetUrl: process.env.IFRAME_URL,
     },
   },
-  app: {
-    baseURL: '/',
-  },
 })

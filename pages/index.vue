@@ -51,13 +51,17 @@ import { ref } from 'vue'
 import { object, string } from 'yup'
 
 const accessToken = ref('')
-const refreshToken = ref('')
 const runtimeConfig = useRuntimeConfig()
 const srcIframe = ref(runtimeConfig.public.iframeTargetUrl)
 
 const route = useRoute()
 const answerId = route.query.answerId?.toString()
+const contractId = route.query.contract_id?.toString()
+const monthlyReport = route.query.monthly_report
+const targetedMonth = route.query.targeted_month?.toString()
+const selectedEnergyType = route.query.selected_energy_type?.toString()
 const heightApp = ref()
+
 onMounted(() => {
   const iframe = document.getElementById('webB') as HTMLIFrameElement
 
@@ -65,14 +69,27 @@ onMounted(() => {
     srcIframe.value = srcIframe.value + '?answerId=' + answerId
   }
   window.addEventListener('message', (event) => {
-    if (event.data == 'first_token') {
+    if (event.data === 'first_token') {
       if (iframe && iframe.contentWindow && accessToken.value.length > 0) {
-        iframe.contentWindow.postMessage(
-          {
-            access_token: accessToken.value,
-          },
-          '*'
-        )
+        if (monthlyReport) {
+          iframe.contentWindow.postMessage(
+            {
+              access_token: accessToken.value,
+              monthly_report: true,
+              contract_id: contractId,
+              targeted_month: targetedMonth,
+              selected_energy_type: selectedEnergyType,
+            },
+            '*'
+          )
+        } else {
+          iframe.contentWindow.postMessage(
+            {
+              access_token: accessToken.value,
+            },
+            '*'
+          )
+        }
         console.log('Send message successfully')
       } else {
         console.error(
@@ -96,12 +113,29 @@ const { handleSubmit } = useForm({
 const onSubmit = handleSubmit((values) => {
   const iframe = document.getElementById('webB') as HTMLIFrameElement
   if (iframe && iframe.contentWindow) {
-    iframe.contentWindow.postMessage(
-      {
-        access_token: values.access_token,
-      },
-      '*'
-    )
+    if (monthlyReport) {
+      console.log('monthly_report', monthlyReport)
+      console.log('contractId', contractId)
+      console.log('targetedMonth', targetedMonth)
+      console.log('selectedEnergyType', selectedEnergyType)
+      iframe.contentWindow.postMessage(
+        {
+          access_token: accessToken.value,
+          monthly_report: true,
+          contract_id: contractId,
+          targeted_month: targetedMonth,
+          selected_energy_type: selectedEnergyType,
+        },
+        '*'
+      )
+    } else {
+      iframe.contentWindow.postMessage(
+        {
+          access_token: accessToken.value,
+        },
+        '*'
+      )
+    }
     console.log('Send message successfully')
   } else {
     console.error(
