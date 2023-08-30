@@ -49,6 +49,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       iframeTargetUrl: process.env.IFRAME_URL,
+      iframeUserPageUrl: process.env.IFRAME_USER_PAGE_URL,
+      iframeMailReceiveSettingUrl: process.env.IFRAME_MAIL_RECEIVE_SETTING_URL,
     },
   },
 })
