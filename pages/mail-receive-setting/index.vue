@@ -1,5 +1,5 @@
 <template>
-  <div class="topHeader gray-background">
+  <!-- <div class="topHeader gray-background">
     <form @submit="onSubmit" class="form-access">
       <TextField
         label="Access token"
@@ -8,8 +8,43 @@
       ></TextField>
       <v-btn type="submit" block class="mt-2">Submit</v-btn>
     </form>
+  </div> -->
+  <div class="sidenav">
+    <img src="/left-menu.png" />
+    <div
+      style="
+        border-bottom: dotted 1px #1e5896;
+        color: #1e5896;
+        padding-left: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      "
+    >
+      <a href="/"><b>トップページ</b></a>
+    </div>
+    <div
+      style="
+        border-bottom: dotted 1px #1e5896;
+        color: #1e5896;
+        padding-left: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      "
+    >
+      <a href="/user"><b>あなたの属性情報</b></a>
+    </div>
+    <div
+      style="
+        border-bottom: dotted 1px #1e5896;
+        color: #1e5896;
+        padding-left: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      "
+    >
+      <a href="/mail-receive-setting"><b>レポート配信設定</b></a>
+    </div>
   </div>
-  <div class="sidenav"><img src="/left-menu.png" /></div>
   <div
     style="
       display: flex;
@@ -50,7 +85,7 @@ import { useForm } from 'vee-validate'
 import { ref } from 'vue'
 import { object, string } from 'yup'
 
-const accessToken = ref('')
+const accessToken = ref('aaaaaaaaaaaaaaaaaaaaaaaaaa')
 const runtimeConfig = useRuntimeConfig()
 const srcIframe = ref(runtimeConfig.public.iframeMailReceiveSettingUrl)
 
