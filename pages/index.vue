@@ -93,10 +93,18 @@ const srcIframe = ref(runtimeConfig.public.iframeTargetUrl)
 
 const route = useRoute()
 const answerId = route.query.answerId?.toString()
-const contractId = route.query.contract_id?.toString()
+
 const monthlyReport = route.query.monthly_report
-const targetedMonth = route.query.targeted_month?.toString()
+const energyGraph = route.query.energy_graph
+
+const contractId = route.query.contract_id?.toString()
 const selectedEnergyType = route.query.selected_energy_type?.toString()
+
+const targetedMonth = route.query.targeted_month?.toString()
+
+const dateType = route.query.date_type?.toString()
+const chartType = route.query.chart_type?.toString()
+
 const heightApp = ref()
 
 onMounted(() => {
@@ -116,6 +124,18 @@ onMounted(() => {
               contract_id: contractId,
               targeted_month: targetedMonth,
               selected_energy_type: selectedEnergyType,
+            },
+            '*'
+          )
+        } else if (energyGraph) {
+          iframe.contentWindow.postMessage(
+            {
+              access_token: accessToken.value,
+              energy_graph: true,
+              contract_id: contractId,
+              selected_energy_type: selectedEnergyType,
+              date_type: dateType,
+              chart_type: chartType,
             },
             '*'
           )
