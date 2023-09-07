@@ -116,7 +116,7 @@ onMounted(() => {
   window.addEventListener('message', (event) => {
     if (event.data === 'first_token') {
       if (iframe && iframe.contentWindow && accessToken.value.length > 0) {
-        if (monthlyReport) {
+        if (monthlyReport == 'true') {
           iframe.contentWindow.postMessage(
             {
               access_token: accessToken.value,
@@ -127,7 +127,7 @@ onMounted(() => {
             },
             '*'
           )
-        } else if (energyGraph) {
+        } else if (energyGraph == 'true') {
           iframe.contentWindow.postMessage(
             {
               access_token: accessToken.value,
@@ -170,11 +170,7 @@ const { handleSubmit } = useForm({
 const onSubmit = handleSubmit((values) => {
   const iframe = document.getElementById('webB') as HTMLIFrameElement
   if (iframe && iframe.contentWindow) {
-    if (monthlyReport) {
-      console.log('monthly_report', monthlyReport)
-      console.log('contractId', contractId)
-      console.log('targetedMonth', targetedMonth)
-      console.log('selectedEnergyType', selectedEnergyType)
+    if (monthlyReport == 'true') {
       iframe.contentWindow.postMessage(
         {
           access_token: accessToken.value,
@@ -182,6 +178,18 @@ const onSubmit = handleSubmit((values) => {
           contract_id: contractId,
           targeted_month: targetedMonth,
           selected_energy_type: selectedEnergyType,
+        },
+        '*'
+      )
+    } else if (energyGraph == 'true') {
+      iframe.contentWindow.postMessage(
+        {
+          access_token: accessToken.value,
+          energy_graph: true,
+          contract_id: contractId,
+          selected_energy_type: selectedEnergyType,
+          date_type: dateType,
+          chart_type: chartType,
         },
         '*'
       )
