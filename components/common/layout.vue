@@ -9,6 +9,7 @@
       <v-btn type="submit" block class="mt-2">Submit</v-btn>
     </form>
   </div> -->
+
   <div class="sidenav">
     <img src="/left-menu.png" />
     <div
@@ -100,8 +101,8 @@
       <iframe
         id="webB"
         class="responsive-iframe"
-        :src="srcIframe"
-        title="Create Member"
+        :src="props.srcIframe"
+        :title="props.title"
         scrolling="no"
         :height="heightApp"
         width="100%"
@@ -110,7 +111,6 @@
       </iframe>
     </div>
   </div>
-  <!-- </div> -->
 </template>
 
 <script setup lang="ts">
@@ -118,68 +118,34 @@ import { useForm } from 'vee-validate'
 import { ref } from 'vue'
 import { object, string } from 'yup'
 
+const props = defineProps({
+  title: {
+    type: String,
+    required: true,
+  },
+  srcIframe: {
+    type: String,
+    required: true,
+  },
+})
+
 const accessToken = ref(
   'eyJraWQiOiJGSzFJdzRrQ1dXZk4zRFhGYnlybnkrbzAxUWs2RFhRMEx0aW1JVlM0aUI0PSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIxNzk0M2EyOC0yMDYxLTcwMzUtMTNjNi1hOWZjMGE5OGViZmQiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAuYXAtbm9ydGhlYXN0LTEuYW1hem9uYXdzLmNvbVwvYXAtbm9ydGhlYXN0LTFfM1BEQlI2YldNIiwiY2xpZW50X2lkIjoiM25mNjN2M3MyNGxjcDgwY2FndmkwMTAycSIsIm9yaWdpbl9qdGkiOiI0ODU5OTViZS0xMzdmLTQ5MjktOTQ3NC0xNTZmMzFkZGJiN2MiLCJldmVudF9pZCI6ImQ5OWFmZWM4LWE4ZTMtNGYxMi1iZTgzLTZmNGNkYzQzNzRhZSIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE2OTM0NzgzNTMsImV4cCI6MTY5MzU2NDc1MywiaWF0IjoxNjkzNDc4MzUzLCJqdGkiOiI4M2JkYTI4NC05M2RhLTQzYzctYWQ5NC0zNDUyMjVhN2Y0OWUiLCJ1c2VybmFtZSI6InRhZ3RhZ3VzZXIwMDEifQ.jh-_kGYULBwgfc6SzOuuxeoA2qFB2Jd0fq3WjXVNrHpQzGySpvV529KuQkdcbIM1zI_KxGd_cyBHI_nbKS6KZsoBJihJrAFGVRSHulYT-LYX1HbcRed896iWcu0ZVVx3RJA4knSkBoQjD5mTq708vQOuF4YYXqMBsc-8opfh6aOaYBBJpckVXM6hZ20mFnGR-nssWCOCuK1Mn9vCRjRDrZkFM__6FmHkpWhlPwRlARHeSQDMtSqdvJYQNaskhBd_rfnDdlW30PZ5xuO53Kb84VSpzYHOaNmCBmxEpGitzsJTqyphpOjB1V3qkiPSd1waHmWgqY_KXuYMW4mU7YjrOw'
 )
-const runtimeConfig = useRuntimeConfig()
-const srcIframe = ref(runtimeConfig.public.homepageUrl)
-
-const route = useRoute()
-const answerId = route.query.answerId?.toString()
-
-const monthlyReport = route.query.monthly_report
-const energyGraph = route.query.energy_graph
-
-const contractId = route.query.contract_id?.toString()
-const selectedEnergyType = route.query.selected_energy_type?.toString()
-
-const targetedMonth = route.query.targeted_month?.toString()
-
-const dateType = route.query.date_type?.toString()
-const chartType = route.query.chart_type?.toString()
-
 const heightApp = ref()
 
 onMounted(() => {
   const iframe = document.getElementById('webB') as HTMLIFrameElement
 
-  if (answerId) {
-    srcIframe.value = srcIframe.value + '?answerId=' + answerId
-  }
   window.addEventListener('message', (event) => {
     if (event.data === 'first_token') {
       if (iframe && iframe.contentWindow && accessToken.value.length > 0) {
-        if (monthlyReport == 'true') {
-          iframe.contentWindow.postMessage(
-            {
-              access_token: accessToken.value,
-              monthly_report: true,
-              contract_id: contractId,
-              targeted_month: targetedMonth,
-              selected_energy_type: selectedEnergyType,
-            },
-            '*'
-          )
-        } else if (energyGraph == 'true') {
-          iframe.contentWindow.postMessage(
-            {
-              access_token: accessToken.value,
-              energy_graph: true,
-              contract_id: contractId,
-              selected_energy_type: selectedEnergyType,
-              date_type: dateType,
-              chart_type: chartType,
-            },
-            '*'
-          )
-        } else {
-          iframe.contentWindow.postMessage(
-            {
-              access_token: accessToken.value,
-            },
-            '*'
-          )
-        }
+        iframe.contentWindow.postMessage(
+          {
+            access_token: accessToken.value,
+          },
+          '*'
+        )
         console.log('Send message successfully')
       } else {
         console.error(
@@ -203,37 +169,12 @@ const { handleSubmit } = useForm({
 const onSubmit = handleSubmit((values) => {
   const iframe = document.getElementById('webB') as HTMLIFrameElement
   if (iframe && iframe.contentWindow) {
-    if (monthlyReport == 'true') {
-      iframe.contentWindow.postMessage(
-        {
-          access_token: accessToken.value,
-          monthly_report: true,
-          contract_id: contractId,
-          targeted_month: targetedMonth,
-          selected_energy_type: selectedEnergyType,
-        },
-        '*'
-      )
-    } else if (energyGraph == 'true') {
-      iframe.contentWindow.postMessage(
-        {
-          access_token: accessToken.value,
-          energy_graph: true,
-          contract_id: contractId,
-          selected_energy_type: selectedEnergyType,
-          date_type: dateType,
-          chart_type: chartType,
-        },
-        '*'
-      )
-    } else {
-      iframe.contentWindow.postMessage(
-        {
-          access_token: accessToken.value,
-        },
-        '*'
-      )
-    }
+    iframe.contentWindow.postMessage(
+      {
+        access_token: accessToken.value,
+      },
+      '*'
+    )
     console.log('Send message successfully')
   } else {
     console.error(
