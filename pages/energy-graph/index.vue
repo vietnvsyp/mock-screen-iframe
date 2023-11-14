@@ -1,7 +1,7 @@
 <template>
   <Layout
-    title="mail-receive-setting-page"
-    :src-iframe="runtimeConfig.public.mailReceiveSettingUrl"
+    title="energy-graph-page"
+    :src-iframe="runtimeConfig.public.energyGraphUrl"
   />
 </template>
 

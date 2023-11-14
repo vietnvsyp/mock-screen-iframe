@@ -1,7 +1,7 @@
 <template>
   <Layout
-    title="mail-receive-setting-page"
-    :src-iframe="runtimeConfig.public.mailReceiveSettingUrl"
+    title="monthly-report-page"
+    :src-iframe="runtimeConfig.public.monthlyReportUrl"
   />
 </template>
 

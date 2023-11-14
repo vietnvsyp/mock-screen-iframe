@@ -1,8 +1,5 @@
 <template>
-  <Layout
-    title="mail-receive-setting-page"
-    :src-iframe="runtimeConfig.public.mailReceiveSettingUrl"
-  />
+  <Layout title="tips-page" :src-iframe="runtimeConfig.public.tipsUrl" />
 </template>
 
 <script setup lang="ts">
