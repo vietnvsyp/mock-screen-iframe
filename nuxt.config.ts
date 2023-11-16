@@ -32,7 +32,11 @@ export default defineNuxtConfig({
       },
     },
   },
-  modules: ['@pinia/nuxt', '@element-plus/nuxt'],
+  modules: [
+    '@pinia/nuxt',
+    '@element-plus/nuxt',
+    '@pinia-plugin-persistedstate/nuxt',
+  ],
   pinia: {
     autoImports: [
       // automatically imports `defineStore`

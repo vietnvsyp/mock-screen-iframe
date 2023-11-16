@@ -1,15 +1,4 @@
 <template>
-  <!-- <div class="topHeader gray-background">
-    <form @submit="onSubmit" class="form-access">
-      <TextField
-        label="Access token"
-        name="access_token"
-        v-model="accessToken"
-      ></TextField>
-      <v-btn type="submit" block class="mt-2">Submit</v-btn>
-    </form>
-  </div> -->
-
   <div class="sidenav">
     <img src="/left-menu.png" />
     <div
@@ -114,9 +103,13 @@
 </template>
 
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
 import { useForm } from 'vee-validate'
 import { ref } from 'vue'
 import { object, string } from 'yup'
+import { useAuthorizationStore } from '~/stores/authorization/authorization-store'
+const authorizationStore = useAuthorizationStore()
+const { accessToken } = storeToRefs(authorizationStore)
 
 const props = defineProps({
   title: {
@@ -129,9 +122,6 @@ const props = defineProps({
   },
 })
 
-const accessToken = ref(
-  'eyJraWQiOiJGSzFJdzRrQ1dXZk4zRFhGYnlybnkrbzAxUWs2RFhRMEx0aW1JVlM0aUI0PSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIxNzk0M2EyOC0yMDYxLTcwMzUtMTNjNi1hOWZjMGE5OGViZmQiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAuYXAtbm9ydGhlYXN0LTEuYW1hem9uYXdzLmNvbVwvYXAtbm9ydGhlYXN0LTFfM1BEQlI2YldNIiwiY2xpZW50X2lkIjoiM25mNjN2M3MyNGxjcDgwY2FndmkwMTAycSIsIm9yaWdpbl9qdGkiOiI0ODU5OTViZS0xMzdmLTQ5MjktOTQ3NC0xNTZmMzFkZGJiN2MiLCJldmVudF9pZCI6ImQ5OWFmZWM4LWE4ZTMtNGYxMi1iZTgzLTZmNGNkYzQzNzRhZSIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE2OTM0NzgzNTMsImV4cCI6MTY5MzU2NDc1MywiaWF0IjoxNjkzNDc4MzUzLCJqdGkiOiI4M2JkYTI4NC05M2RhLTQzYzctYWQ5NC0zNDUyMjVhN2Y0OWUiLCJ1c2VybmFtZSI6InRhZ3RhZ3VzZXIwMDEifQ.jh-_kGYULBwgfc6SzOuuxeoA2qFB2Jd0fq3WjXVNrHpQzGySpvV529KuQkdcbIM1zI_KxGd_cyBHI_nbKS6KZsoBJihJrAFGVRSHulYT-LYX1HbcRed896iWcu0ZVVx3RJA4knSkBoQjD5mTq708vQOuF4YYXqMBsc-8opfh6aOaYBBJpckVXM6hZ20mFnGR-nssWCOCuK1Mn9vCRjRDrZkFM__6FmHkpWhlPwRlARHeSQDMtSqdvJYQNaskhBd_rfnDdlW30PZ5xuO53Kb84VSpzYHOaNmCBmxEpGitzsJTqyphpOjB1V3qkiPSd1waHmWgqY_KXuYMW4mU7YjrOw'
-)
 const heightApp = ref()
 
 onMounted(() => {
@@ -167,6 +157,7 @@ const { handleSubmit } = useForm({
 })
 
 const onSubmit = handleSubmit((values) => {
+  accessToken.value = values.access_token
   const iframe = document.getElementById('webB') as HTMLIFrameElement
   if (iframe && iframe.contentWindow) {
     iframe.contentWindow.postMessage(

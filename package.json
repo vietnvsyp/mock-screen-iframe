@@ -17,6 +17,7 @@
     "nuxt": "^3.4.3",
     "typescript": "^5.0.4",
     "vue-i18n": "^9.2.2",
+    "@pinia-plugin-persistedstate/nuxt": "^1.1.1",
     "vue-tsc": "^1.6.3"
   },
   "dependencies": {
@@ -27,6 +28,7 @@
     "element-plus": "^2.3.4",
     "http-status-codes": "^2.2.0",
     "pinia": "^2.0.35",
+    "pinia-plugin-persistedstate": "^3.1.0",
     "reflect-metadata": "^0.1.13",
     "sass": "^1.62.1",
     "sprintf-js": "^1.1.2",
