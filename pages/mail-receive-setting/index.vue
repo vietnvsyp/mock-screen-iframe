@@ -1,12 +1,15 @@
 <template>
-  <Layout
-    title="mail-receive-setting-page"
-    :src-iframe="runtimeConfig.public.mailReceiveSettingUrl"
-  />
+  <script nonce="nonce-5">
+
+    <Layout
+      title="mail-receive-setting-page"
+      :src-iframe="runtimeConfig.public.mailReceiveSettingUrl"
+    />
+  </script>
 </template>
 
-<script nonce="nonce-script" setup lang="ts">
+<script setup lang="ts">
 const runtimeConfig = useRuntimeConfig()
 </script>
 
-<style nonce="nonce-style" lang="scss" scoped></style>
+<style lang="scss" scoped></style>

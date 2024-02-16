@@ -1,12 +1,15 @@
 <template>
-  <Layout
-    title="monthly-report-page"
-    :src-iframe="runtimeConfig.public.monthlyReportUrl"
-  />
+  <script nonce="nonce-6">
+
+    <Layout
+      title="monthly-report-page"
+      :src-iframe="runtimeConfig.public.monthlyReportUrl"
+    />
+  </script>
 </template>
 
-<script nonce="nonce-script" setup lang="ts">
+<script setup lang="ts">
 const runtimeConfig = useRuntimeConfig()
 </script>
 
-<style nonce="nonce-style" lang="scss" scoped></style>
+<style lang="scss" scoped></style>

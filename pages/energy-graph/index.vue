@@ -1,12 +1,15 @@
 <template>
-  <Layout
-    title="energy-graph-page"
-    :src-iframe="runtimeConfig.public.energyGraphUrl"
-  />
+  <script nonce="nonce-4">
+
+    <Layout
+      title="energy-graph-page"
+      :src-iframe="runtimeConfig.public.energyGraphUrl"
+    />
+  </script>
 </template>
 
-<script nonce="nonce-script" setup lang="ts">
+<script setup lang="ts">
 const runtimeConfig = useRuntimeConfig()
 </script>
 
-<style nonce="nonce-style" lang="scss" scoped></style>
+<style lang="scss" scoped></style>

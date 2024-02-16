@@ -1,42 +1,42 @@
 <template>
-  <Field
-    :name="props.name"
-    v-slot="{ field, errorMessage, value }"
-    :validateOnBlur="props.validateOnBlur"
-    :validateOnChange="props.validateOnChange"
-    :validateOnInput="props.validateOnInput"
-    :validateOnModelUpdate="props.validateOnModelUpdate"
-    :validateOnMount="props.validateOnMount"
-  >
-    <v-text-field
-      v-if="$attrs.readonly"
-      :modelValue="value"
-      v-bind="{ ...$attrs, ...field }"
-      disabled
-      readonly
-      :class="
-        'custom-text-field-readonly' + ($attrs.class ? ' ' + $attrs.class : '')
-      "
-      variant="underlined"
+  <script nonce="nonce-2">
+    <Field
+      :name="props.name"
+      v-slot="{ field, errorMessage, value }"
+      :validateOnBlur="props.validateOnBlur"
+      :validateOnChange="props.validateOnChange"
+      :validateOnInput="props.validateOnInput"
+      :validateOnModelUpdate="props.validateOnModelUpdate"
+      :validateOnMount="props.validateOnMount"
     >
-    </v-text-field>
-
-    <div v-else>
       <v-text-field
+        v-if="$attrs.readonly"
         :modelValue="value"
         v-bind="{ ...$attrs, ...field }"
+        disabled
+        readonly
+        :class="
+          'custom-text-field-readonly' + ($attrs.class ? ' ' + $attrs.class : '')
+        "
         variant="underlined"
-      ></v-text-field>
-      <div>
-        {{ errorMessage }}
+      >
+      </v-text-field>
+
+      <div v-else>
+        <v-text-field
+          :modelValue="value"
+          v-bind="{ ...$attrs, ...field }"
+          variant="underlined"
+        ></v-text-field>
+        <div>
+          {{ errorMessage }}
+        </div>
       </div>
-    </div>
-  </Field>
+    </Field>
+  </script>
 </template>
 
-<script nonce="nonce-script" setup lang="ts">
-import { Field } from 'vee-validate'
-
+<script setup lang="ts">
 const props = defineProps({
   name: {
     type: String,
@@ -65,7 +65,7 @@ const props = defineProps({
 })
 </script>
 
-<style nonce="nonce-style" lang="scss">
+<style lang="scss">
 .custom-text-field-readonly {
   label,
   input,

@@ -1,9 +1,12 @@
 <template>
-  <Layout title="tips-page" :src-iframe="runtimeConfig.public.tipsUrl" />
+  <script nonce="nonce-7">
+
+    <Layout title="tips-page" :src-iframe="runtimeConfig.public.tipsUrl" />
+  </script>
 </template>
 
-<script nonce="nonce-script" setup lang="ts">
+<script setup lang="ts">
 const runtimeConfig = useRuntimeConfig()
 </script>
 
-<style nonce="nonce-style" lang="scss" scoped></style>
+<style lang="scss" scoped></style>

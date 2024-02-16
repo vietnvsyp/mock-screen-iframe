@@ -1,123 +1,126 @@
 <template>
-  <div class="topHeader gray-background" v-if="!accessToken">
-    <form @submit="onSubmitLogin" class="form-access">
-      <TextField
-        label="Access token (login_id)"
-        name="access_token"
-      ></TextField>
-      <v-btn type="submit" block class="mt-2">Submit</v-btn>
-    </form>
-  </div>
-  <div class="topHeader gray-background" v-if="accessToken">
-    <form @submit="signOut" class="form-access">
-      <v-btn type="submit" block class="mt-2">Logout</v-btn>
-    </form>
-  </div>
-  <div class="sidenav">
-    <img src="/left-menu.png" />
-    <div
-      style="
-        border-bottom: dotted 1px #1e5896;
-        color: #1e5896;
-        padding-left: 20px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-      "
-    >
-      <a href="/"><b>トップページ</b></a>
-    </div>
-    <div
-      style="
-        border-bottom: dotted 1px #1e5896;
-        color: #1e5896;
-        padding-left: 20px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-      "
-    >
-      <a href="/user"><b>あなたの属性情報</b></a>
-    </div>
-    <div
-      style="
-        border-bottom: dotted 1px #1e5896;
-        color: #1e5896;
-        padding-left: 20px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-      "
-    >
-      <a href="/mail-receive-setting"><b>レポート配信設定</b></a>
-    </div>
-    <div
-      style="
-        border-bottom: dotted 1px #1e5896;
-        color: #1e5896;
-        padding-left: 20px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-      "
-    >
-      <a href="/monthly-report"><b>省エネレポート詳細へ</b></a>
-    </div>
-    <div
-      style="
-        border-bottom: dotted 1px #1e5896;
-        color: #1e5896;
-        padding-left: 20px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-      "
-    >
-      <a href="/energy-graph"><b>エネルギーグラフ詳細へ</b></a>
-    </div>
-    <div
-      style="
-        border-bottom: dotted 1px #1e5896;
-        color: #1e5896;
-        padding-left: 20px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-      "
-    >
-      <a href="/tips"><b>省エネのコツ一覧へ</b></a>
-    </div>
-  </div>
-  <div
-    style="
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      min-height: 100%;
-      font-family: 'Yu Gothic';
-    "
-    class="gray-background mainRight"
-  >
-    <div class="topHeader">
-      <form class="form-access">
-        <img
-          src="/top-menu.png"
-          style="height: 150px; width: 100%; object-fit: contain"
-        />
+  <script nonce="nonce-3">
+
+    <div class="topHeader gray-background" v-if="!accessToken">
+      <form @submit="onSubmitLogin" class="form-access">
+        <TextField
+          label="Access token (login_id)"
+          name="access_token"
+        ></TextField>
+        <v-btn type="submit" block class="mt-2">Submit</v-btn>
       </form>
     </div>
-    <div class="main gray-background">
-      <iframe
-        id="webB"
-        class="responsive-iframe"
-        :src="srcIframe"
-        title="Create Member"
-        scrolling="no"
-        :height="heightApp"
-        width="100%"
-        style="border: none"
-      >
-      </iframe>
+    <div class="topHeader gray-background" v-if="accessToken">
+      <form @submit="signOut" class="form-access">
+        <v-btn type="submit" block class="mt-2">Logout</v-btn>
+      </form>
     </div>
-  </div>
+    <div class="sidenav">
+      <img src="/left-menu.png" />
+      <div
+        style="
+          border-bottom: dotted 1px #1e5896;
+          color: #1e5896;
+          padding-left: 20px;
+          padding-top: 10px;
+          padding-bottom: 10px;
+        "
+      >
+        <a href="/"><b>トップページ</b></a>
+      </div>
+      <div
+        style="
+          border-bottom: dotted 1px #1e5896;
+          color: #1e5896;
+          padding-left: 20px;
+          padding-top: 10px;
+          padding-bottom: 10px;
+        "
+      >
+        <a href="/user"><b>あなたの属性情報</b></a>
+      </div>
+      <div
+        style="
+          border-bottom: dotted 1px #1e5896;
+          color: #1e5896;
+          padding-left: 20px;
+          padding-top: 10px;
+          padding-bottom: 10px;
+        "
+      >
+        <a href="/mail-receive-setting"><b>レポート配信設定</b></a>
+      </div>
+      <div
+        style="
+          border-bottom: dotted 1px #1e5896;
+          color: #1e5896;
+          padding-left: 20px;
+          padding-top: 10px;
+          padding-bottom: 10px;
+        "
+      >
+        <a href="/monthly-report"><b>省エネレポート詳細へ</b></a>
+      </div>
+      <div
+        style="
+          border-bottom: dotted 1px #1e5896;
+          color: #1e5896;
+          padding-left: 20px;
+          padding-top: 10px;
+          padding-bottom: 10px;
+        "
+      >
+        <a href="/energy-graph"><b>エネルギーグラフ詳細へ</b></a>
+      </div>
+      <div
+        style="
+          border-bottom: dotted 1px #1e5896;
+          color: #1e5896;
+          padding-left: 20px;
+          padding-top: 10px;
+          padding-bottom: 10px;
+        "
+      >
+        <a href="/tips"><b>省エネのコツ一覧へ</b></a>
+      </div>
+    </div>
+    <div
+      style="
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        min-height: 100%;
+        font-family: 'Yu Gothic';
+      "
+      class="gray-background mainRight"
+    >
+      <div class="topHeader">
+        <form class="form-access">
+          <img
+            src="/top-menu.png"
+            style="height: 150px; width: 100%; object-fit: contain"
+          />
+        </form>
+      </div>
+      <div class="main gray-background">
+        <iframe
+          id="webB"
+          class="responsive-iframe"
+          :src="srcIframe"
+          title="Create Member"
+          scrolling="no"
+          :height="heightApp"
+          width="100%"
+          style="border: none"
+        >
+        </iframe>
+      </div>
+    </div>
+  </script>
   <!-- </div> -->
 </template>
 
-<script nonce="nonce-script" setup lang="ts">
+<script setup lang="ts">
 import { storeToRefs } from 'pinia'
 import { useForm } from 'vee-validate'
 import { ref } from 'vue'
@@ -252,7 +255,7 @@ function resizeIframe(obj: any) {
 }
 </script>
 
-<style nonce="nonce-style" lang="scss" scoped>
+<style lang="scss" scoped>
 .gray-background {
   //background: $gray-background;
   background: white;

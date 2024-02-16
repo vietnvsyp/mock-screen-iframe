@@ -7,5 +7,3 @@
     </v-main>
   </v-app>
 </template>
-
-<script nonce="nonce-script" setup lang="ts"></script>
