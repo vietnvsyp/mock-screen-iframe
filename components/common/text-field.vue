@@ -34,7 +34,7 @@
   </Field>
 </template>
 
-<script setup lang="ts">
+<script nonce="nonce-script" setup lang="ts">
 import { Field } from 'vee-validate'
 
 const props = defineProps({
@@ -65,7 +65,7 @@ const props = defineProps({
 })
 </script>
 
-<style lang="scss">
+<style nonce="nonce-style" lang="scss">
 .custom-text-field-readonly {
   label,
   input,

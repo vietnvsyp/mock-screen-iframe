@@ -2,8 +2,8 @@
   <Layout title="tips-page" :src-iframe="runtimeConfig.public.tipsUrl" />
 </template>
 
-<script setup lang="ts">
+<script nonce="nonce-script" setup lang="ts">
 const runtimeConfig = useRuntimeConfig()
 </script>
 
-<style lang="scss" scoped></style>
+<style nonce="nonce-style" lang="scss" scoped></style>

@@ -1,12 +1,9 @@
 <template>
-  <Layout
-    title="user-page"
-    :src-iframe="runtimeConfig.public.userPageUrl"
-  />
+  <Layout title="user-page" :src-iframe="runtimeConfig.public.userPageUrl" />
 </template>
 
-<script setup lang="ts">
+<script nonce="nonce-script" setup lang="ts">
 const runtimeConfig = useRuntimeConfig()
 </script>
 
-<style lang="scss" scoped></style>
+<style nonce="nonce-style" lang="scss" scoped></style>

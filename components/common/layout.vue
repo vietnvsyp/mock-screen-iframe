@@ -102,7 +102,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script nonce="nonce-script" setup lang="ts">
 import { storeToRefs } from 'pinia'
 import { useForm } from 'vee-validate'
 import { ref } from 'vue'
@@ -193,7 +193,7 @@ function resizeIframe(obj: any) {
 }
 </script>
 
-<style lang="scss" scoped>
+<style nonce="nonce-style" lang="scss" scoped>
 .gray-background {
   //background: $gray-background;
   background: white;

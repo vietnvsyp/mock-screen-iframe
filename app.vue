@@ -8,4 +8,4 @@
   </v-app>
 </template>
 
-<script setup lang="ts"></script>
+<script nonce="nonce-script" setup lang="ts"></script>
