@@ -29,8 +29,34 @@ npm run dev
 
 5. Add environment variables
    `IFRAME_URL = {URL of frontend server}`
+```
 
-6. Save and deploy
-
+6. Add custom headers for security
+   File: customHttp.yml
 
 ```
+customHeaders:
+  - pattern: '**'
+    headers:
+      - key: Strict-Transport-Security
+        value: max-age=31536000; includeSubDomains
+      - key: X-Frame-Options
+        value: SAMEORIGIN
+      - key: X-XSS-Protection
+        value: 1; mode=block
+      - key: X-Content-Type-Options
+        value: nosniff
+      - key: Content-Security-Policy
+        value: >-
+            connect-src 'self';
+            script-src 'self' '<SHA256_FILE_INLINE_SCRIPT>' '<SHA256_FILE_INLINE_SCRIPT_IFRAME>';
+            style-src-elem 'self' '<SHA256_FILE_INLINE_STYLE>' https://fonts.googleapis.com/;
+            img-src 'self';
+            frame-src {IFRAME_URL/};
+            frame-ancestors 'none';
+            font-src 'self' https://fonts.gstatic.com/;
+            media-src 'none'; object-src 'none';
+            manifest-src 'none'; form-action 'self';
+```
+
+7. Save and deploy
