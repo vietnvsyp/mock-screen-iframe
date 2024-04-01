@@ -49,10 +49,10 @@ customHeaders:
       - key: Content-Security-Policy
         value: >-
             connect-src 'self';
-            script-src 'self' '<SHA256_FILE_INLINE_SCRIPT>' '<SHA256_FILE_INLINE_SCRIPT_IFRAME>';
-            style-src-elem 'self' '<SHA256_FILE_INLINE_STYLE>' https://fonts.googleapis.com/;
+            script-src 'self' '{SHA256_FILE_INLINE_SCRIPT}' '{SHA256_FILE_INLINE_SCRIPT_IFRAME}';
+            style-src-elem 'self' '{SHA256_FILE_INLINE_STYLE}' https://fonts.googleapis.com/;
             img-src 'self';
-            frame-src {IFRAME_URL/};
+            frame-src {IFRAME_URL/} {DOWNLOAD_REPORT_BUCKET_URL/};
             frame-ancestors 'none';
             font-src 'self' https://fonts.gstatic.com/;
             media-src 'none'; object-src 'none';
