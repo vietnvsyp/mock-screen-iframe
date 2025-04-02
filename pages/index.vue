@@ -203,9 +203,6 @@ onMounted(() => {
             {
               access_token: accessToken.value,
               energy_challenge: true,
-              contract_id: contractId,
-              selected_energy_type: selectedEnergyType,
-              date_type: dateType,
             },
             '*'
           )
