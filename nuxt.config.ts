@@ -57,6 +57,7 @@ export default defineNuxtConfig({
       mailReceiveSettingUrl: process.env.MAIL_RECEIVE_SETTING_URL,
       energyGraphUrl: process.env.ENERGY_GRAPH_URL,
       monthlyReportUrl: process.env.MONTHLY_REPORT_URL,
+      energyChallengeUrl: process.env.ENERGY_CHALLENGE_URL,
       tipsUrl: process.env.TIPS_URL,
     },
   },
