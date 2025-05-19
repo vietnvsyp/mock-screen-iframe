@@ -67,6 +67,39 @@
     >
       <a href="/tips"><b>省エネのコツ一覧へ</b></a>
     </div>
+    <div
+      style="
+        border-bottom: dotted 1px #1e5896;
+        color: #1e5896;
+        padding-left: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      "
+    >
+      <a href="/energy-challenge"><b>省エネチャレンジ</b></a>
+    </div>
+    <div
+      style="
+        border-bottom: dotted 1px #1e5896;
+        color: #1e5896;
+        padding-left: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      "
+    >
+      <a href="/energy-challenge/join"><b>省エネチャレンジに参加する</b></a>
+    </div>
+    <div
+      style="
+        border-bottom: dotted 1px #1e5896;
+        color: #1e5896;
+        padding-left: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      "
+    >
+      <a href="/energy-challenge/cancel-join"><b>参加を終了する</b></a>
+    </div>
   </div>
   <div
     style="
