@@ -92,6 +92,28 @@
     >
       <a href="/energy-challenge"><b>省エネチャレンジ</b></a>
     </div>
+    <div
+      style="
+        border-bottom: dotted 1px #1e5896;
+        color: #1e5896;
+        padding-left: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      "
+    >
+      <a href="/energy-challenge/join"><b>省エネチャレンジに参加する</b></a>
+    </div>
+    <div
+      style="
+        border-bottom: dotted 1px #1e5896;
+        color: #1e5896;
+        padding-left: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      "
+    >
+      <a href="/energy-challenge/cancel-join"><b>参加を終了する</b></a>
+    </div>
   </div>
   <div
     style="
@@ -154,7 +176,6 @@ const answerId = route.query.answerId?.toString()
 
 const monthlyReport = route.query.monthly_report
 const energyGraph = route.query.energy_graph
-const energyChallenge = route.query.energy_challenge
 
 const contractId = route.query.contract_id?.toString()
 const selectedEnergyType = route.query.selected_energy_type?.toString()
@@ -195,14 +216,6 @@ onMounted(() => {
               selected_energy_type: selectedEnergyType,
               date_type: dateType,
               chart_type: chartType,
-            },
-            '*'
-          )
-        } else if (energyChallenge == 'true') {
-          iframe.contentWindow.postMessage(
-            {
-              access_token: accessToken.value,
-              energy_challenge: true,
             },
             '*'
           )
